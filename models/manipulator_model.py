@@ -19,10 +19,11 @@ class ManiuplatorModel:
         self.d1 = self.l1 / 2
         self.d2 = self.l2 / 2
 
-
-        self.alpha = self.m1 * self.d1**2 + self.m2 * (self.l1**2 + self.d2**2)  +self.m3 *(self.l1**2 + self.l2**2)+ self.I_1 + self.I_2 + self.I_3
+        self.alpha = self.m1 * self.d1 ** 2 + self.m2 * (self.l1 ** 2 + self.d2 ** 2) + self.m3 * (
+                    self.l1 ** 2 + self.l2 ** 2) + self.I_1 + self.I_2 + self.I_3
         self.beta = self.m2 * self.l1 * self.d2 + self.m3 * self.l1 * self.l2
-        self.gamma = self.m2 * self.d2**2 + self.m3 * self.l2**2 + self.I_2 + self.I_3
+        self.gamma = self.m2 * self.d2 ** 2 + self.m3 * self.l2 ** 2 + self.I_2 + self.I_3
+
     def M(self, x):
         """
         Please implement the calculation of the mass matrix, according to the model derived in the exercise
@@ -42,5 +43,5 @@ class ManiuplatorModel:
         q1, q2, q1_dot, q2_dot = x
 
         C = np.array([[-self.beta * np.sin(q2) * q2_dot, -self.beta * np.sin(q2) * (q1_dot + q2_dot)],
-                        [self.beta * np.sin(q2) * q1_dot, 0]])
+                      [self.beta * np.sin(q2) * q1_dot, 0]])
         return C
