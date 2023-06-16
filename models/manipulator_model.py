@@ -45,3 +45,10 @@ class ManiuplatorModel:
         C = np.array([[-self.beta * np.sin(q2) * q2_dot, -self.beta * np.sin(q2) * (q1_dot + q2_dot)],
                       [self.beta * np.sin(q2) * q1_dot, 0]])
         return C
+
+    def x_dot(self, x, u):
+        inv_M = np.linalg.inv(self.M(x))
+        zeros = np.zeros((2, 2), dtype=np.float32)
+        A = np.concatenate([np.concatenate([zeros, np.eye(2)], 1), np.concatenate([zeros, -inv_M @ self.C(x)], 1)], 0)
+        b = np.concatenate([zeros, inv_M], 0)
+        return A @ x[:, np.newaxis] + b @ u
